@@ -38,23 +38,11 @@ Document Upload → Embedding Generation → Vector DB
 
 ---
 
-📌 Status
+## 📌 Status
 
-In Progress 🚧
+**In Progress 🚧**
 
-Core project scaffolding is complete, and active development is underway.
-
-Current focus areas:
-
-Building document upload & ingestion APIs
-
-Implementing embedding generation pipeline
-
-Integrating vector database for semantic retrieval
-
-Enabling LLM-powered query workflows
-
-Further enhancements will include performance optimizations, indexing strategies, and end-to-end query orchestration.
+The platform is under active development. Foundational components are in place, with ongoing work focused on ingestion pipelines, vector indexing, and LLM-driven retrieval workflows.
 
 ---
 
