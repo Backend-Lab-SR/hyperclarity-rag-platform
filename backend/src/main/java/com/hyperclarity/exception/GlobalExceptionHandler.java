@@ -30,6 +30,11 @@ public class GlobalExceptionHandler {
         return errorResponse(HttpStatus.BAD_REQUEST, "Required upload part 'file' is missing");
     }
 
+    @ExceptionHandler(DocumentNotFoundException.class)
+    public ResponseEntity<ApiErrorResponse> handleDocumentNotFound(DocumentNotFoundException ex) {
+        return errorResponse(HttpStatus.NOT_FOUND, ex.getMessage());
+    }
+
     private ResponseEntity<ApiErrorResponse> errorResponse(HttpStatus status, String message) {
         return ResponseEntity.status(status).body(new ApiErrorResponse(status.value(), message));
     }

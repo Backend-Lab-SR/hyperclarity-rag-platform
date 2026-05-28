@@ -1,12 +1,15 @@
 package com.hyperclarity.service;
 
+import com.hyperclarity.dto.DocumentResponse;
 import com.hyperclarity.dto.UploadResponse;
 import com.hyperclarity.entity.DocumentEntity;
+import com.hyperclarity.exception.DocumentNotFoundException;
 import com.hyperclarity.exception.InvalidDocumentUploadException;
 import com.hyperclarity.exception.UnsupportedFileTypeException;
 import com.hyperclarity.repository.DocumentRepository;
 import com.hyperclarity.service.parser.DocumentParser;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,5 +59,37 @@ public class DocumentService {
                 saved.getFilename(),
                 saved.getContentType(),
                 saved.getUploadedAt());
+    }
+
+    public List<DocumentResponse> listDocuments() {
+        return documentRepository.findAll().stream()
+                .map(this::toMetadataResponse)
+                .toList();
+    }
+
+    public DocumentResponse getDocument(UUID id) {
+        DocumentEntity document = documentRepository.findById(id)
+                .orElseThrow(() -> new DocumentNotFoundException(id));
+        return toDetailResponse(document);
+    }
+
+    private DocumentResponse toMetadataResponse(DocumentEntity document) {
+        return new DocumentResponse(
+                document.getId(),
+                document.getFilename(),
+                document.getContentType(),
+                document.getFileSize(),
+                document.getUploadedAt(),
+                null);
+    }
+
+    private DocumentResponse toDetailResponse(DocumentEntity document) {
+        return new DocumentResponse(
+                document.getId(),
+                document.getFilename(),
+                document.getContentType(),
+                document.getFileSize(),
+                document.getUploadedAt(),
+                document.getExtractedText());
     }
 }
