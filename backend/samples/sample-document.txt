@@ -1,0 +1,28 @@
+HyperClarity Sample Document
+============================
+
+This is a sample plain-text file for testing the document upload API.
+
+Product overview
+----------------
+HyperClarity is a retrieval-augmented generation (RAG) platform for turning
+unstructured documents into searchable knowledge.
+
+Example use cases
+-----------------
+- AI ad campaign optimization: analyze performance reports and creative briefs
+- Legal document intelligence: search clauses across contracts and filings
+- Customer support knowledge search: answer agents from help-center content
+
+Testing notes
+-------------
+When you upload this file to POST /api/documents, the backend should:
+1. Accept the multipart upload
+2. Extract this UTF-8 text
+3. Persist a row in the MySQL documents table
+4. Return JSON with id, filename, contentType, and uploadedAt
+
+Sample paragraph for extraction verification
+--------------------------------------------
+The quick brown fox jumps over the lazy dog. If you see this sentence in
+extracted_text after upload, parsing and persistence worked correctly.
