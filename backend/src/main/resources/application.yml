@@ -27,6 +27,11 @@ spring:
 server:
   port: ${SERVER_PORT:8080}
 
+hyperclarity:
+  chunking:
+    chunk-size: ${CHUNK_SIZE:1000}
+    overlap: ${CHUNK_OVERLAP:200}
+
 logging:
   level:
     root: INFO
