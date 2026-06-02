@@ -32,6 +32,10 @@ hyperclarity:
     chunk-size: ${CHUNK_SIZE:1000}
     overlap: ${CHUNK_OVERLAP:200}
 
+openai:
+  api-key: ${OPENAI_API_KEY:}
+  embedding-model: ${OPENAI_EMBEDDING_MODEL:text-embedding-3-small}
+
 logging:
   level:
     root: INFO
